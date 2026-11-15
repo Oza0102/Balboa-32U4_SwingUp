@@ -7,8 +7,6 @@
     ハミルトニアンの偏微分はSymPyで自動的に求め、随伴方程式を用いて評価関数の勾配を計算する。
 =========================================================================================
 """
-
-
 import numpy as np
 import sympy as sp
 import matplotlib.pyplot as plt
@@ -39,7 +37,7 @@ phi_s = w / 2 * ((x1 - h)**2 + x2**2)
 # ハミルトニアン H = L + λ1*f1 + λ2*f2
 H_s = L_s + l1 * f_s[0] + l2 * f_s[1]
 
-# 偏微分（ここを SymPy が自動でやってくれる）
+# 偏微分を SymPy 自動で求める
 minus_dHdx_s = [-sp.diff(H_s, xi) for xi in x_s]   # 随伴方程式の右辺 -∂H/∂x
 dHdu_s = sp.diff(H_s, u_s)                         # ∂H/∂u
 dphidx_s = [sp.diff(phi_s, xi) for xi in x_s]      # λ(tf) = ∂φ/∂x
@@ -57,7 +55,7 @@ dphidx_func = sp.lambdify((x1, x2), dphidx_s, "numpy")
 phi_func = sp.lambdify((x1, x2), phi_s, "numpy")
 
 
-# ===== ここから下は、手計算版とほぼ同じ =====
+
 def f(x, u):
     return np.array(f_func(x[0], x[1], u), dtype=float)
 
