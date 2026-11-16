@@ -26,6 +26,7 @@ tol = 1e-4
 
 # ===== SymPy で H と φ を定義し、偏微分を自動で求める =====
 # 記号（文字）を用意する
+# 記号symbolicにはsを付けて区別する
 x1, x2, u_s, l1, l2 = sp.symbols("x1 x2 u lambda1 lambda2")
 x_s = [x1, x2]
 
@@ -55,11 +56,11 @@ dphidx_func = sp.lambdify((x1, x2), dphidx_s, "numpy")
 phi_func = sp.lambdify((x1, x2), phi_s, "numpy")
 
 
-
+# 状態方程式右辺の数値計算 f = [x2, u_s / m - g]
 def f(x, u):
     return np.array(f_func(x[0], x[1], u), dtype=float)
 
-
+# 状態方程式の数値積分（4次のルンゲクッタ法）
 def solve_x(x0, u):
     x = np.zeros((N, 2))
     dx = np.zeros((N, 2))
@@ -73,6 +74,7 @@ def solve_x(x0, u):
         x[k + 1] = x[k] + dt / 6 * (k1 + 2 * k2 + 2 * k3 + k4)
     dx[N - 1] = f(x[N - 1], u[N - 1])
     return x, dx
+
 
 
 def dH_dx(lam, x, u):

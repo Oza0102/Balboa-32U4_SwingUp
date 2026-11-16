@@ -32,6 +32,8 @@ x_1(t_0)=0,x_2(t_0)=0\\
 x_1(t_f)=h,x_2(t_f)=0
 $$
 
+![荷物持ち上げモデル図](NimotuMotiage.png)
+
 ## ファイル
 
 | ファイル | 内容 |
@@ -41,14 +43,6 @@ $$
 | ocp_scipy.py | 随伴方程式を含む境界値問題として solve_bvp で解く |
 | segway_hamiltonian_sympy.py | Segway モデルのハミルトニアンの偏微分を SymPy で求め、数値微分と比べて検算する |
 
-## 実行方法
-
-```
-python ocp_sympy.py
-```
-
-必要なライブラリ：（numpy、sympy など）
-
 ## 結果
 
 | 方法 | 評価関数 J | 反復回数 |
@@ -57,7 +51,7 @@ python ocp_sympy.py
 | 直接法（CasADi） | 53.380 | （ ） |
 | 境界値問題（solve_bvp） | 53.381 | （ ） |
 
-（図があれば：`![最適な操作力](図のファイル名.png)`）
+![最急降下法](ocp_sympy.png)
 
 ## 考察
 
