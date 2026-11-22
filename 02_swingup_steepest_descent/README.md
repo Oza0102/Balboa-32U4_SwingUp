@@ -14,7 +14,7 @@
 状態 $X=[x,\ \theta,\ \dot{x},\ \dot{\theta}]$、制御入力 $\tau$（2輪合計の車輪トルク）
 
 - $x$：車輪の位置 [m]
-- $\theta$：車体の角度 [rad]。水平から反時計回りに測り、$0$ が前に寝た状態、$\pi/2$ が直立
+- $\theta$：車体の角度 [rad]。水平から反時計回りに測り、$0$が前に寝た状態、$\pi/2$が直立
 
 **状態方程式**
 
@@ -23,8 +23,7 @@ $$
 m_1+m_2+\dfrac{I_1}{r^2} & -m_2 s\sin\theta\\
 -m_2 s\sin\theta & I_2+m_2 s^2
 \end{bmatrix}
-\begin{bmatrix}\ddot{x}\\ \ddot{\theta}\end{bmatrix}
-=
+\begin{bmatrix}\ddot{x}\\ \ddot{\theta}\end{bmatrix}=
 \begin{bmatrix}
 m_2 s\cos\theta\,\dot{\theta}^2+\dfrac{\tau}{r}\\
 -m_2 g s\cos\theta+\tau
@@ -83,7 +82,7 @@ $$
 ## 解き方
 
 1. $\tau(t)=0$ から始める
-2. 状態方程式を $t=0$ から順時間方向に解く（4次のルンゲ・クッタ、$\Delta t=0.005$ s）
+2. 状態方程式を $t=0$ から順時間方向に解く（4次のルンゲ・クッタ、$\Delta$ $t=0.005$ s）
 3. 随伴方程式 $\dot{\lambda}=-\partial H/\partial X$ を $\lambda(t_f)=\partial\phi/\partial X$ から逆時間方向に解く
 4. $\tau \leftarrow \tau-\alpha\,\partial H/\partial\tau$ で更新する。ステップ幅 $\alpha$ は $J$ が減るまで半分にする（バックトラッキング）
 5. $\partial H/\partial\tau$ のノルムが初回の $10^{-5}$ 倍より小さくなるか、10000 回に達するまで 2〜4 を繰り返す
@@ -118,7 +117,7 @@ $$
 ![起き上がり軌道](swingup_sd.png)
 
 電圧 $V$ のグラフの破線は上限 $\pm V_{max}$。
-$V$ は $t$ = 0.03 ～ 0.47 s のほぼ全体で上限 5.76 V を超えている（最大 6.19 V、$t$ = 0.05 s）。
+$V$ は $t$ = 0.03 ～ 0.47 s のほぼ全体で上限 5.76 V を超えている（最大 6.19 V、$t$= 0.05 s）。
 電圧はペナルティとして入れているだけなので、上限を少し超えた状態で反復が止まっている。
 
 ## 考察
