@@ -235,7 +235,7 @@ def main():
     print(f"最大回転速度 |omega| = {np.abs(omega_rel).max():.1f} rad/s"
           f"（電圧の上限だけで回せる速さ {V_max / Ke:.1f} rad/s）")
 
-    # プログラムと同じフォルダに保存する
+    # プログラムと同じフォルダに保存
     folder = os.path.dirname(os.path.abspath(__file__))
     path = os.path.join(folder, "swingup_sd.csv")
     data = np.column_stack([t, x, u])
@@ -243,20 +243,20 @@ def main():
                header="t,x,theta,dx,dtheta,tau", comments="", fmt="%.6f")
     print("保存しました:", path)
 
-    fig, ax = plt.subplots(3, 2, figsize=(9, 8))
-    ax[0, 0].plot(t[:-1], u[:-1]); ax[0, 0].set_title("tau [N m]")
-    ax[0, 1].plot(t, x[:, 0]); ax[0, 1].set_title("x [m]")
-    ax[1, 0].plot(t, x[:, 1]); ax[1, 0].set_title("theta [rad]")
-    ax[1, 0].axhline(np.pi / 2, linestyle="--", color="gray")   # 直立
-    ax[1, 1].plot(t, x[:, 2]); ax[1, 1].set_title("dx [m/s]")
-    ax[2, 0].plot(t, x[:, 3]); ax[2, 0].set_title("dtheta [rad/s]")
-    ax[2, 1].plot(t[:-1], V); ax[2, 1].set_title("V [V]")
-    for v in (V_max, -V_max):
-        ax[2, 1].axhline(v, linestyle="--", color="gray")       # 電圧の上限
+    fig2, ax2 = plt.subplots()
+    ax2.plot(t[:-1], u[:-1])
+    ax2.set_title("tau [N m]")
+    ax2.set_xlabel("t [s]")
+
+    fig, ax = plt.subplots(2, 2)
+    ax[0, 0].plot(t, x[:, 0]); ax[0, 0].set_title("x [m]")
+    ax[0, 1].plot(t, x[:, 1]); ax[0, 1].set_title("theta [rad]")
+    ax[0, 1].axhline(np.pi / 2, linestyle="--", color="gray")   # 直立
+    ax[1, 0].plot(t, x[:, 2]); ax[1, 0].set_title("dx [m/s]")
+    ax[1, 1].plot(t, x[:, 3]); ax[1, 1].set_title("dtheta [rad/s]")
     for a in ax.flat:
         a.set_xlabel("t [s]")
     plt.tight_layout()
-    fig.savefig(os.path.join(folder, "swingup_sd.png"))
     plt.show()
 
 
