@@ -41,7 +41,6 @@ $$
 | ocp_sympy.py | 最急降下法（間接法）。ハミルトニアンの偏微分を SymPy で自動で求める |
 | ocp_casadi.py | 直接法（CasADi＋IPOPT） |
 | ocp_scipy.py | 随伴方程式を含む境界値問題として solve_bvp で解く |
-| segway_hamiltonian_sympy.py | Segway モデルのハミルトニアンの偏微分を SymPy で求め、数値微分と比べて検算する |
 
 ## 結果
 
@@ -59,4 +58,4 @@ $$
 
 ---
 
-次の章：[02 Segway の起き上がり軌道（最急降下法）](../02_swingup_gradient/)
+次の章：[02 Segway の起き上がり軌道（最急降下法）](../02_swingup_steepest_descent/)
